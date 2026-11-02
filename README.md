@@ -1,73 +1,76 @@
 <div align="center">
 
+> **Tradução para português (Brasil) do README original do projeto [FreeLLMAPI](https://github.com/tashfeenahmed/freellmapi).**
+> Créditos: projeto, texto e imagens originais por [Tashfeen Ahmed (@tashfeenahmed)](https://github.com/tashfeenahmed) e pelos colaboradores listados abaixo, sob licença [MIT](./LICENSE). Esta é uma tradução não oficial; em caso de divergência, vale o [README original em inglês](https://github.com/tashfeenahmed/freellmapi#readme).
+
 # FreeLLMAPI
 
-**7.4 billion tokens per month.  34 free LLM providers. 635 free model endpoints. One OpenAI-compatible endpoint.**
+**7,4 bilhões de tokens por mês. 34 provedores de LLM gratuitos. 635 endpoints de modelos gratuitos. Um único endpoint compatível com a OpenAI.**
 
-Aggregate free tiers from dozens of providers, plus custom OpenAI-compatible chat, embedding, image, and audio endpoints, behind a single `/v1` API. Keys are stored encrypted. A router picks the best available model for each request, falls over to the next provider when one is rate-limited, and tracks per-key usage so you stay under every free-tier cap.
+Reúna os planos gratuitos de dezenas de provedores, além de endpoints personalizados compatíveis com a OpenAI (chat, embeddings, imagem e áudio), atrás de uma única API `/v1`. As chaves ficam armazenadas criptografadas. Um roteador escolhe o melhor modelo disponível para cada requisição, passa para o próximo provedor quando um deles atinge o limite de uso e acompanha o consumo por chave para que você permaneça abaixo de todos os limites dos planos gratuitos.
 
 [![CI](https://github.com/tashfeenahmed/freellmapi/actions/workflows/ci.yml/badge.svg)](https://github.com/tashfeenahmed/freellmapi/actions/workflows/ci.yml)
 [![GitHub stars](https://img.shields.io/github/stars/tashfeenahmed/freellmapi?style=flat&logo=github&color=yellow)](https://github.com/tashfeenahmed/freellmapi/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#contributing)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#contribuindo)
 [![Docker image](https://img.shields.io/badge/ghcr.io-freellmapi-2496ED?logo=docker&logoColor=white)](https://github.com/tashfeenahmed/freellmapi/pkgs/container/freellmapi)
 [![Ask DeepWiki](https://img.shields.io/badge/DeepWiki-Ask-blue)](https://deepwiki.com/tashfeenahmed/freellmapi)
 
-**[freellmapi.co](https://freellmapi.co/?utm_source=github&utm_medium=readme&utm_campaign=repository&utm_content=readme_top)** · browse the full catalog: 474 model families, 635 free endpoints
+**[freellmapi.co](https://freellmapi.co/?utm_source=github&utm_medium=readme&utm_campaign=repository&utm_content=readme_top)** · explore o catálogo completo: 474 famílias de modelos, 635 endpoints gratuitos
 
-**English** · [简体中文](README.zh-cn.md) · [Русский](README.ru.md)
+[English](README.md) · [简体中文](README.zh-cn.md) · [Русский](README.ru.md) · **Português (Brasil)**
 
 <p align="center">
-  <a href="https://github.com/tashfeenahmed/freellmapi/releases/latest"><img src="repo-assets/badges/macos.svg" height="48" alt="Download for macOS"></a>
-  <a href="https://github.com/tashfeenahmed/freellmapi/releases/latest"><img src="repo-assets/badges/windows.svg" height="48" alt="Download for Windows"></a>
-  <a href="docs/en/install/01-install.md#docker-compose"><img src="repo-assets/badges/docker.svg" height="48" alt="Self-host with Docker"></a>
-  <a href="https://play.google.com/store/apps/details?id=co.freellmapi.app"><img src="repo-assets/badges/play-store.svg" height="48" alt="Get it on Google Play"></a>
-  <a href="https://apps.apple.com/app/id6804648934"><img src="repo-assets/badges/app-store.svg" height="48" alt="Download on the App Store"></a>
+  <a href="https://github.com/tashfeenahmed/freellmapi/releases/latest"><img src="repo-assets/badges/macos.svg" height="48" alt="Baixar para macOS"></a>
+  <a href="https://github.com/tashfeenahmed/freellmapi/releases/latest"><img src="repo-assets/badges/windows.svg" height="48" alt="Baixar para Windows"></a>
+  <a href="docs/en/install/01-install.md#docker-compose"><img src="repo-assets/badges/docker.svg" height="48" alt="Hospede você mesmo com Docker"></a>
+  <a href="https://play.google.com/store/apps/details?id=co.freellmapi.app"><img src="repo-assets/badges/play-store.svg" height="48" alt="Disponível no Google Play"></a>
+  <a href="https://apps.apple.com/app/id6804648934"><img src="repo-assets/badges/app-store.svg" height="48" alt="Baixar na App Store"></a>
 </p>
 
-![FreeLLMAPI dashboard — Models page with the monthly token budget](repo-assets/github-hero.png)
+![Painel do FreeLLMAPI — página Modelos com o orçamento mensal de tokens](repo-assets/github-hero.png)
 
 
-Your router updates its own model catalog from a signed feed: new free models, quota changes, and compatibility fixes land without a `git pull`. Free installs get the monthly snapshot, so a model reaches them 30 days after it joins the live feed; premium routers get it the same day.
-**[Go live at freellmapi.co](https://freellmapi.co/?utm_source=github&utm_medium=readme&utm_campaign=premium&utm_content=readme_top#pricing)** ($19/yr, cancel anytime).
+Seu roteador atualiza o próprio catálogo de modelos a partir de um feed assinado: novos modelos gratuitos, mudanças de cota e correções de compatibilidade chegam sem precisar de um `git pull`. As instalações gratuitas recebem o snapshot mensal, então um modelo chega até elas 30 dias depois de entrar no feed ao vivo; os roteadores premium o recebem no mesmo dia.
+**[Entre no ar em freellmapi.co](https://freellmapi.co/?utm_source=github&utm_medium=readme&utm_campaign=premium&utm_content=readme_top#pricing)** (US$ 19/ano, cancele quando quiser).
 
 </div>
 
 ---
 
-## Contents
+## Sumário
 
-- [Why this exists](#why-this-exists)
-- [Supported providers](#supported-providers)
-- [Compatible CLIs & coding agents](#compatible-clis--coding-agents)
-- [How it compares](#how-it-compares)
-- [Features](#features)
-- [Quick start](#quick-start)
-- [Desktop app](#desktop-app)
-- [Works with OpenAI-compatible clients](#works-with-openai-compatible-clients)
-- [Languages](#languages)
-- [Premium (live catalog)](#premium-live-catalog)
-- [Using the API](#using-the-api)
-- [Screenshots](#screenshots)
-- [How it works](#how-it-works)
-- [FAQ](#faq)
-- [Limitations](#limitations)
-- [Contributing](#contributing)
-- [Disclaimer](#disclaimer)
+- [Por que isto existe](#por-que-isto-existe)
+- [Provedores suportados](#provedores-suportados)
+- [CLIs e agentes de código compatíveis](#clis-e-agentes-de-código-compatíveis)
+- [Como se compara](#como-se-compara)
+- [Recursos](#recursos)
+- [Início rápido](#início-rápido)
+- [Aplicativo desktop](#aplicativo-desktop)
+- [Funciona com clientes compatíveis com a OpenAI](#funciona-com-clientes-compatíveis-com-a-openai)
+- [Idiomas](#idiomas)
+- [Premium (catálogo ao vivo)](#premium-catálogo-ao-vivo)
+- [Usando a API](#usando-a-api)
+- [Capturas de tela](#capturas-de-tela)
+- [Como funciona](#como-funciona)
+- [Perguntas frequentes](#perguntas-frequentes)
+- [Limitações](#limitações)
+- [Contribuindo](#contribuindo)
+- [Aviso legal](#aviso-legal)
 
-**Guides:** [Install & deploy](docs/en/install/01-install.md) · [API reference](docs/en/api/01-rest-api.md) · [Clients & coding agents](docs/en/clients/01-agent-clients.md) · [Prompt compression](docs/en/compression/01-compression-pipeline.md) · [Architecture & internals](docs/en/architecture/00-high-level-index.md) · [Documentation index](docs/en/README.md) · [Contributor guide](CONTRIBUTING.md)
+**Guias** (em inglês): [Instalação e deploy](docs/en/install/01-install.md) · [Referência da API](docs/en/api/01-rest-api.md) · [Clientes e agentes de código](docs/en/clients/01-agent-clients.md) · [Compressão de prompts](docs/en/compression/01-compression-pipeline.md) · [Arquitetura e internos](docs/en/architecture/00-high-level-index.md) · [Índice da documentação](docs/en/README.md) · [Guia do colaborador](CONTRIBUTING.md)
 
-## Why this exists
+## Por que isto existe
 
-Every serious AI lab now offers a free tier, a few million tokens a month, a few thousand requests a day. On its own each tier is a toy. Stacked together, they add up to roughly **7.4 billion tokens per month** of working inference capacity, across **474 model families / 635 provider endpoints** from small-and-fast to reasonably capable.
+Todo laboratório de IA sério oferece hoje um plano gratuito: alguns milhões de tokens por mês, alguns milhares de requisições por dia. Isoladamente, cada plano é um brinquedo. Somados, chegam a cerca de **7,4 bilhões de tokens por mês** de capacidade de inferência utilizável, distribuídos em **474 famílias de modelos / 635 endpoints de provedores**, de pequenos e rápidos a razoavelmente capazes.
 
-The problem is that stacking them by hand is painful: thirty-four different SDKs, thirty-four different rate limits, thirty-four places a request can fail. FreeLLMAPI collapses that into one OpenAI-compatible endpoint. Point any OpenAI client library at your local server, and it routes transparently across whichever providers you've added keys for.
+O problema é que combiná-los à mão é doloroso: trinta e quatro SDKs diferentes, trinta e quatro limites de uso diferentes, trinta e quatro lugares onde uma requisição pode falhar. O FreeLLMAPI condensa tudo isso em um único endpoint compatível com a OpenAI. Aponte qualquer biblioteca cliente da OpenAI para o seu servidor local e ele roteia de forma transparente entre os provedores para os quais você adicionou chaves.
 
-And the free-tier landscape shifts weekly: providers launch models, retire them, and change quotas without notice. FreeLLMAPI tracks all of that for you. The router pulls a signed model catalog from [freellmapi.co](https://freellmapi.co) on its own, so your install keeps up without a `git pull`. See [Premium (live catalog)](#premium-live-catalog) for how fast it keeps up.
+Além disso, o cenário dos planos gratuitos muda toda semana: provedores lançam modelos, aposentam outros e alteram cotas sem aviso. O FreeLLMAPI acompanha tudo isso por você. O roteador baixa sozinho um catálogo de modelos assinado de [freellmapi.co](https://freellmapi.co), de modo que sua instalação se mantém atualizada sem `git pull`. Veja [Premium (catálogo ao vivo)](#premium-catálogo-ao-vivo) para saber com que rapidez ela acompanha.
 
-![The free tier, stacked — ~7.4B tokens of free inference per month across 34 providers](repo-assets/free-tier.png)
+![O plano gratuito, empilhado — ~7,4 bi de tokens de inferência gratuita por mês em 34 provedores](repo-assets/free-tier.png)
 
-## Supported providers
+## Provedores suportados
 
 <div align="center">
 <table>
@@ -89,19 +92,19 @@ And the free-tier landscape shifts weekly: providers launch models, retire them,
 <td align="center"><img src="repo-assets/providers/huggingface.png" width="44" alt="HuggingFace"><br/><b>HuggingFace</b></td>
 </tr>
 <tr>
-<td align="center"><a href="https://modelscope.cn"><b>ModelScope</b><br/>Qwen3 · DeepSeek V4 · GLM-5 (needs Aliyun cn binding)</a></td>
+<td align="center"><a href="https://modelscope.cn"><b>ModelScope</b><br/>Qwen3 · DeepSeek V4 · GLM-5 (requer vínculo com a Aliyun na China)</a></td>
 </tr>
 </table>
 
-<i>… and 22 more free providers</i>
+<i>… e mais 22 provedores gratuitos</i>
 
 </div>
 
-Plus a **custom** provider — point chat, embedding, image, or audio models at any OpenAI-compatible endpoint (llama.cpp, LM Studio, vLLM, a local Ollama, or a remote gateway) from the Keys page.
+Há também um provedor **personalizado** — aponte modelos de chat, embeddings, imagem ou áudio para qualquer endpoint compatível com a OpenAI (llama.cpp, LM Studio, vLLM, um Ollama local ou um gateway remoto) pela página Chaves.
 
-The full, always-current list lives at **[freellmapi.co/models](https://freellmapi.co/models.html)** with per-model rate limits, context windows, and free-token budgets.
+A lista completa e sempre atualizada está em **[freellmapi.co/models](https://freellmapi.co/models.html)**, com limites de uso por modelo, janelas de contexto e orçamentos de tokens gratuitos.
 
-## Compatible CLIs & coding agents
+## CLIs e agentes de código compatíveis
 
 <div align="center">
 <table>
@@ -119,150 +122,149 @@ The full, always-current list lives at **[freellmapi.co/models](https://freellma
 </tr>
 </table>
 
-<i>… plus Continue, Goose, Qwen Code, Kilo Code, Crush, Zed, JetBrains AI, DeepSeek Harness, MiMo Code, AtomCode, OpenClaw, Hermes Agent, Pi, Reasonix, ZCode and any OpenAI-compatible, Anthropic, Gemini or Ollama client</i>
+<i>… além de Continue, Goose, Qwen Code, Kilo Code, Crush, Zed, JetBrains AI, DeepSeek Harness, MiMo Code, AtomCode, OpenClaw, Hermes Agent, Pi, Reasonix, ZCode e qualquer cliente compatível com OpenAI, Anthropic, Gemini ou Ollama</i>
 
 </div>
 
-Most agents configure themselves with one command that reads your live catalog, backs up the existing config and merges into it:
+A maioria dos agentes se configura sozinha com um único comando que lê o seu catálogo ao vivo, faz backup da configuração existente e a mescla:
 
 ```bash
 npx freellmapi setup-claude --url http://localhost:3001 --api-key <unified-key>
 ```
 
-**[All supported agents and their setup commands →](docs/en/clients/02-supported-agents.md)** · [Per-tool recipes, MCP server and URL tokens →](docs/en/clients/01-agent-clients.md)
+**[Todos os agentes suportados e seus comandos de configuração →](docs/en/clients/02-supported-agents.md)** · [Receitas por ferramenta, servidor MCP e tokens de URL →](docs/en/clients/01-agent-clients.md)
 
-## How it compares
+## Como se compara
 
-![Feature comparison against OpenRouter, LiteLLM, and Portkey](repo-assets/comparison.png)
+![Comparação de recursos com OpenRouter, LiteLLM e Portkey](repo-assets/comparison.png)
 
-Based on public documentation, July 2026 — corrections welcome.
+Com base na documentação pública, julho de 2026 — correções são bem-vindas.
 
-## Features
+## Recursos
 
-![Feature overview](repo-assets/features.png)
+![Visão geral dos recursos](repo-assets/features.png)
 
-- **Every OpenAI-style surface** — `/v1/chat/completions`, `/v1/responses` (what Codex CLI needs), `/v1/completions` (editor ghost-text autocomplete), `/v1/images/generations`, `/v1/videos/generations`, `/v1/audio/speech`, `/v1/audio/transcriptions`, `/v1/embeddings`, and `/v1/models` — streaming and non-streaming, from the official SDKs or any OpenAI-compatible client. [API reference →](docs/en/api/01-rest-api.md)
-- **Anthropic Messages API** — `/v1/messages` speaks Anthropic's wire format over the same router, so **Claude Code** and the official Anthropic SDKs run against your free pool. [Details →](docs/en/api/01-rest-api.md#anthropic--claude-clients)
-- **Native Gemini + Ollama surfaces** — Gemini CLI can use `/v1beta` (`generateContent`, streaming, token counting, models), while opt-in Ollama emulation serves NDJSON chat/generate, tags, metadata, and embeddings for Zed, JetBrains, and other local-model clients.
-- **Fusion (multi-model synthesis)** — request the virtual `fusion` model and the router fans your prompt out to a panel of diverse free models in parallel, then a judge model synthesizes one answer from the drafts. [Details →](docs/en/api/01-rest-api.md#fusion-multi-model-synthesis)
-- **Image, video & speech generation** — `/v1/images/generations`, `/v1/videos/generations`, and `/v1/audio/speech` route across the providers that serve media models; images and speech also accept custom OpenAI-compatible media endpoints. Video jobs are normalized across synchronous and queued providers and return a completed MP4.
-- **Tool calling & structured outputs** — OpenAI-style `tools` round-trip across providers (plain-text tool calls are rescued into real `tool_calls`), plus `response_format`, `seed`, `logprobs`, penalties, and the rest of the sampling params passed through per provider.
-- **Smart routing, six strategies** — live per-model speed/capability/reliability scores rank your chain; automatic fallover retries the next model on 429/5xx with cooldowns and key rotation. [Routing in detail →](docs/en/architecture/00-high-level-index.md#how-it-works)
-- **Unified models & profiles** — the same model on several providers collapses into one entry with strict in-group failover; named fallback-chain profiles (a coding chain, a vision chain) switch from the dashboard or per request via `auto:<profile>`, and custom chains can be renamed in place from the chain manager.
-- **Per-key rate tracking** — RPM/RPD/TPM/TPD counters per `(platform, model, key)` that learn providers' reported ceilings, so routing always stays under every cap.
-- **Self-updating model catalog** — the router syncs a signed catalog from freellmapi.co twice a day: new models, quota changes, and provider quirk fixes land automatically. Free installs track the monthly snapshot, which each model joins 30 days after it lands in the live feed; premium routers get it same-day. [Premium →](#premium-live-catalog)
-- **Sticky sessions & context handoff** — conversations stay on one model for 30 minutes; an optional compact handoff note keeps the thread coherent when a mid-chat switch does happen. [Details →](docs/en/clients/01-agent-clients.md#context-handoff)
-- **Prompt compression (opt-in)** — a shared, fail-open request pipeline can deduplicate prompts, filter tool output, compact repeated JSON, and trim stale context before cache lookup and routing. [Details →](docs/en/compression/01-compression-pipeline.md)
-- **Encrypted keys, one token out** — provider keys are AES-256-GCM encrypted in SQLite and decrypted in-memory per request; your apps only ever see a single unified `freellmapi-…` bearer token.
-- **Admin dashboard & analytics** — React UI to manage keys, reorder the chain, run a playground, and read p50/p95/TTFT analytics over 24h–90d windows; login-gated, dark/light themes, [60 languages](#languages).
-- **ChatGPT-ready MCP server & interactive docs** — ChatGPT and other MCP clients can call FreeLLMAPI inference, list usable models, inspect provider health/usage/cache/routing metadata, and manage the routing strategy over `/mcp`; a dependency-free OpenAPI viewer lives at `/v1/docs`. [ChatGPT and coding agents →](docs/en/clients/01-agent-clients.md#mcp-server)
-- **Ops niceties** — opt-in response cache, encrypted DB backups, periodic key health checks, bulk key import/export, declarative startup config. [Install & deploy →](docs/en/install/01-install.md)
-- **Runs anywhere Node 20+ runs** — Windows, macOS, Linux servers, or a small ARM SBC (Raspberry Pi included). ~40 MB RSS at idle behind PM2 / systemd / whatever supervisor you prefer.
+- **Todas as superfícies no estilo OpenAI** — `/v1/chat/completions`, `/v1/responses` (necessário para o Codex CLI), `/v1/completions` (autocompletar "texto fantasma" em editores), `/v1/images/generations`, `/v1/videos/generations`, `/v1/audio/speech`, `/v1/audio/transcriptions`, `/v1/embeddings` e `/v1/models` — com e sem streaming, a partir dos SDKs oficiais ou de qualquer cliente compatível com a OpenAI. [Referência da API →](docs/en/api/01-rest-api.md)
+- **API Anthropic Messages** — `/v1/messages` fala o formato de comunicação da Anthropic sobre o mesmo roteador, de modo que o **Claude Code** e os SDKs oficiais da Anthropic funcionam com o seu pool gratuito. [Detalhes →](docs/en/api/01-rest-api.md#anthropic--claude-clients)
+- **Superfícies nativas do Gemini e do Ollama** — o Gemini CLI pode usar `/v1beta` (`generateContent`, streaming, contagem de tokens, modelos), enquanto a emulação opcional do Ollama serve chat/generate em NDJSON, tags, metadados e embeddings para Zed, JetBrains e outros clientes de modelos locais.
+- **Fusion (síntese multimodelo)** — solicite o modelo virtual `fusion` e o roteador distribui seu prompt em paralelo para um painel de modelos gratuitos diversos; em seguida, um modelo juiz sintetiza uma única resposta a partir dos rascunhos. [Detalhes →](docs/en/api/01-rest-api.md#fusion-multi-model-synthesis)
+- **Geração de imagem, vídeo e fala** — `/v1/images/generations`, `/v1/videos/generations` e `/v1/audio/speech` roteiam entre os provedores que oferecem modelos de mídia; imagens e fala também aceitam endpoints de mídia personalizados compatíveis com a OpenAI. Os jobs de vídeo são normalizados entre provedores síncronos e com fila e retornam um MP4 concluído.
+- **Chamada de ferramentas e saídas estruturadas** — o `tools` no estilo OpenAI funciona entre provedores (chamadas de ferramenta em texto simples são resgatadas e convertidas em `tool_calls` reais), além de `response_format`, `seed`, `logprobs`, penalidades e os demais parâmetros de amostragem repassados por provedor.
+- **Roteamento inteligente, seis estratégias** — pontuações ao vivo de velocidade, capacidade e confiabilidade por modelo ordenam sua cadeia; o fallover automático tenta o próximo modelo em caso de 429/5xx, com tempos de espera (cooldowns) e rotação de chaves. [Roteamento em detalhes →](docs/en/architecture/00-high-level-index.md#how-it-works)
+- **Modelos unificados e perfis** — o mesmo modelo em vários provedores se funde em uma única entrada com failover estrito dentro do grupo; perfis de cadeia de fallback nomeados (uma cadeia para código, outra para visão) são alternados pelo painel ou por requisição via `auto:<perfil>`, e as cadeias personalizadas podem ser renomeadas diretamente no gerenciador de cadeias.
+- **Controle de limites por chave** — contadores de RPM/RPD/TPM/TPD por `(plataforma, modelo, chave)` que aprendem os tetos informados pelos provedores, de modo que o roteamento sempre fica abaixo de todos os limites.
+- **Catálogo de modelos com autoatualização** — o roteador sincroniza um catálogo assinado de freellmapi.co duas vezes por dia: novos modelos, mudanças de cota e correções de peculiaridades dos provedores chegam automaticamente. As instalações gratuitas acompanham o snapshot mensal, no qual cada modelo entra 30 dias depois de chegar ao feed ao vivo; os roteadores premium o recebem no mesmo dia. [Premium →](#premium-catálogo-ao-vivo)
+- **Sessões fixas e transferência de contexto** — as conversas permanecem em um único modelo por 30 minutos; uma nota de transferência compacta e opcional mantém a conversa coerente quando ocorre uma troca no meio do chat. [Detalhes →](docs/en/clients/01-agent-clients.md#context-handoff)
+- **Compressão de prompts (opcional)** — um pipeline de requisições compartilhado e tolerante a falhas pode deduplicar prompts, filtrar saídas de ferramentas, compactar JSON repetido e podar contexto antigo antes da consulta ao cache e do roteamento. [Detalhes →](docs/en/compression/01-compression-pipeline.md)
+- **Chaves criptografadas, um único token de saída** — as chaves dos provedores são criptografadas com AES-256-GCM no SQLite e descriptografadas em memória a cada requisição; seus aplicativos só enxergam um único token bearer unificado `freellmapi-…`.
+- **Painel administrativo e análises** — interface em React para gerenciar chaves, reordenar a cadeia, usar um playground e ler análises de p50/p95/TTFT em janelas de 24h a 90d; com login, temas claro/escuro e [60 idiomas](#idiomas).
+- **Servidor MCP pronto para ChatGPT e documentação interativa** — o ChatGPT e outros clientes MCP podem chamar a inferência do FreeLLMAPI, listar modelos utilizáveis, inspecionar metadados de saúde/uso/cache/roteamento dos provedores e gerenciar a estratégia de roteamento via `/mcp`; um visualizador OpenAPI sem dependências fica em `/v1/docs`. [ChatGPT e agentes de código →](docs/en/clients/01-agent-clients.md#mcp-server)
+- **Facilidades operacionais** — cache de respostas opcional, backups criptografados do banco de dados, verificações periódicas de saúde das chaves, importação/exportação de chaves em lote, configuração declarativa na inicialização. [Instalação e deploy →](docs/en/install/01-install.md)
+- **Roda em qualquer lugar onde o Node 20+ rode** — Windows, macOS, servidores Linux ou uma pequena SBC ARM (incluindo Raspberry Pi). ~40 MB de RSS em repouso sob PM2 / systemd / o supervisor que você preferir.
 
-The scope is deliberately narrow — see [what's not supported yet](docs/en/architecture/00-high-level-index.md#not-yet-supported).
+O escopo é deliberadamente restrito — veja [o que ainda não é suportado](docs/en/architecture/00-high-level-index.md#not-yet-supported).
 
-## Quick start
+## Início rápido
 
-**One-liner** (Docker required — sets up `~/freellmapi`, generates an encryption key, pulls the image, and starts the container):
+**Comando único** (requer Docker — configura `~/freellmapi`, gera uma chave de criptografia, baixa a imagem e inicia o contêiner):
 
 ```bash
 curl -fsSL https://freellmapi.co/install.sh | bash
 ```
 
-Prefer to read before you pipe to bash? [The script is here](https://freellmapi.co/install.sh). Re-running it is safe: your `.env` (and encryption key) is preserved and the container updates to `:latest`.
+Prefere ler antes de enviar para o bash? [O script está aqui](https://freellmapi.co/install.sh). Executá-lo novamente é seguro: seu `.env` (e a chave de criptografia) é preservado e o contêiner é atualizado para `:latest`.
 
-Open http://localhost:3001, add your provider keys on the **Keys** page, reorder the **Fallback Chain** to taste, and grab your unified API key from the **Keys** page header. That unified key is what you point your OpenAI SDK at.
+Abra http://localhost:3001, adicione as chaves dos seus provedores na página **Chaves**, reordene a **Cadeia de Fallback** ao seu gosto e pegue sua chave de API unificada no cabeçalho da página **Chaves**. Essa chave unificada é para onde você aponta o seu SDK da OpenAI.
 
-On Windows, the easiest path is the desktop **[`.exe` installer from Releases](https://github.com/tashfeenahmed/freellmapi/releases/latest)** (below). On Android, see the experimental [Termux guide](docs/en/install/02-android-termux.md).
+No Windows, o caminho mais fácil é o **[instalador `.exe` da área de Releases](https://github.com/tashfeenahmed/freellmapi/releases/latest)** do aplicativo desktop (abaixo). No Android, veja o [guia do Termux](docs/en/install/02-android-termux.md) (experimental).
 
-Everything else — Docker Compose, local development, declarative startup config, production builds, LAN access, and backups — is in **[docs/en/install/01-install.md](docs/en/install/01-install.md)**.
+Todo o resto — Docker Compose, desenvolvimento local, configuração declarativa na inicialização, builds de produção, acesso pela LAN e backups — está em **[docs/en/install/01-install.md](docs/en/install/01-install.md)**.
 
-## Desktop app
+## Aplicativo desktop
 
-A native menu-bar app lives in [`desktop/`](./desktop): the entire router + dashboard running locally from your tray, with a glass popover showing live request stats.
+Um aplicativo nativo de barra de menus fica em [`desktop/`](./desktop): o roteador e o painel inteiros rodando localmente a partir da bandeja do sistema, com um popover de vidro mostrando estatísticas de requisições ao vivo.
 
-![FreeLLMAPI desktop app](repo-assets/desktop.png)
+![Aplicativo desktop do FreeLLMAPI](repo-assets/desktop.png)
 
-**[Download from Releases](https://github.com/tashfeenahmed/freellmapi/releases/latest)** — the macOS `.dmg` and the Windows `.exe` installer are attached to every release. No account or password to set up: the only credential you need is the unified API key from the tray popover. Build-from-source steps and where your data lives: [docs/en/install/01-install.md#desktop-app](docs/en/install/01-install.md#desktop-app).
+**[Baixe em Releases](https://github.com/tashfeenahmed/freellmapi/releases/latest)** — o `.dmg` para macOS e o instalador `.exe` para Windows acompanham cada versão. Não há conta nem senha para configurar: a única credencial de que você precisa é a chave de API unificada exibida no popover da bandeja. Passos para compilar a partir do código-fonte e onde ficam seus dados: [docs/en/install/01-install.md#desktop-app](docs/en/install/01-install.md#desktop-app).
 
-For macOS 12 Monterey or later, choose **arm64 (Apple Silicon)** or **x64 (Intel)**. Both Mac builds also include a ZIP download.
+Para macOS 12 Monterey ou posterior, escolha **arm64 (Apple Silicon)** ou **x64 (Intel)**. Ambas as versões para Mac também têm download em ZIP.
 
-## Works with OpenAI-compatible clients
+## Funciona com clientes compatíveis com a OpenAI
 
-Anything that can target an OpenAI-compatible base URL works: set it to `http://localhost:3001/v1` with the unified key from the dashboard. Every generator supports `--dry-run`; `npx freellmapi launch` (Claude Code) and `launch-codex` (Codex) keep credentials out of config files entirely. The router also doubles as an MCP server your agents can introspect mid-session.
+Qualquer coisa que consiga apontar para uma URL base compatível com a OpenAI funciona: defina-a como `http://localhost:3001/v1` com a chave unificada do painel. Todo gerador aceita `--dry-run`; `npx freellmapi launch` (Claude Code) e `launch-codex` (Codex) mantêm as credenciais totalmente fora dos arquivos de configuração. O roteador também funciona como servidor MCP que seus agentes podem consultar durante a sessão.
 
-**ChatGPT** connects to the same local router through a private Secure MCP Tunnel. The
-`ask_freellmapi` MCP tool routes a ChatGPT-requested task through `/v1/chat/completions` and
-returns the answer with served-model, fallback, cache, execution, and token metadata. Base
-URL and bearer authentication live in the tunnel-client configuration; the default model is
-set with `MCP_INFERENCE_DEFAULT_MODEL` (`auto` when unset). No key belongs in Git or in the
-MCP URL. **[ChatGPT setup →](docs/en/clients/01-agent-clients.md#chatgpt-private-secure-mcp-tunnel)**
+O **ChatGPT** se conecta ao mesmo roteador local por meio de um Secure MCP Tunnel privado. A ferramenta MCP
+`ask_freellmapi` roteia uma tarefa solicitada pelo ChatGPT através de `/v1/chat/completions` e
+retorna a resposta com metadados de modelo atendido, fallback, cache, execução e tokens. A URL
+base e a autenticação bearer ficam na configuração do cliente do túnel; o modelo padrão é
+definido por `MCP_INFERENCE_DEFAULT_MODEL` (`auto` quando não definido). Nenhuma chave deve ficar no Git ou na
+URL do MCP. **[Configuração do ChatGPT →](docs/en/clients/01-agent-clients.md#chatgpt-private-secure-mcp-tunnel)**
 
-Provider keys can be managed from the terminal too, with a dashboard session token (`FREELLMAPI_DASHBOARD_TOKEN` or `--token`): `npx freellmapi keys add|list|remove|test <platform>`, where `keys test` re-checks stored keys. See [cli/README.md](cli/README.md#provider-keys).
+As chaves dos provedores também podem ser gerenciadas pelo terminal, com um token de sessão do painel (`FREELLMAPI_DASHBOARD_TOKEN` ou `--token`): `npx freellmapi keys add|list|remove|test <plataforma>`, em que `keys test` verifica novamente as chaves armazenadas. Veja [cli/README.md](cli/README.md#provider-keys).
 
-FreeLLMAPI is local-first and single-user by design. Your provider keys stay in your SQLite database, encrypted at rest, and requests go from your machine to the upstream providers you enabled.
+O FreeLLMAPI é local-first e de usuário único por design. Suas chaves de provedores ficam no seu banco SQLite, criptografadas em repouso, e as requisições vão da sua máquina diretamente para os provedores que você habilitou.
 
-## Languages
+## Idiomas
 
-The dashboard ships in **60 languages** (the desktop tray menu in 6). The UI
-auto-detects your browser/system language on first load and you can switch any
-time from **⋯ → Settings**; the choice is remembered. Right-to-left languages
-(العربية, עברית, فارسی, اردو) flip the whole layout automatically, and only the
-active language's dictionary is loaded — the rest never touch your bandwidth.
+O painel está disponível em **60 idiomas** (o menu da bandeja do desktop em 6). A interface
+detecta automaticamente o idioma do navegador/sistema no primeiro acesso e você pode trocar a qualquer
+momento em **⋯ → Configurações**; a escolha é lembrada. Os idiomas escritos da direita para a esquerda
+(العربية, עברית, فارسی, اردو) invertem todo o layout automaticamente, e apenas o
+dicionário do idioma ativo é carregado — os demais nunca consomem sua banda.
 
 <img src="https://flagcdn.com/24x18/us.png" srcset="https://flagcdn.com/48x36/us.png 2x" width="24" height="18" alt="United States" title="United States"> <img src="https://flagcdn.com/24x18/cn.png" srcset="https://flagcdn.com/48x36/cn.png 2x" width="24" height="18" alt="China" title="China"> <img src="https://flagcdn.com/24x18/es.png" srcset="https://flagcdn.com/48x36/es.png 2x" width="24" height="18" alt="Spain" title="Spain"> <img src="https://flagcdn.com/24x18/fr.png" srcset="https://flagcdn.com/48x36/fr.png 2x" width="24" height="18" alt="France" title="France"> <img src="https://flagcdn.com/24x18/br.png" srcset="https://flagcdn.com/48x36/br.png 2x" width="24" height="18" alt="Brazil" title="Brazil"> <img src="https://flagcdn.com/24x18/it.png" srcset="https://flagcdn.com/48x36/it.png 2x" width="24" height="18" alt="Italy" title="Italy"> <img src="https://flagcdn.com/24x18/in.png" srcset="https://flagcdn.com/48x36/in.png 2x" width="24" height="18" alt="India" title="India"> <img src="https://flagcdn.com/24x18/sa.png" srcset="https://flagcdn.com/48x36/sa.png 2x" width="24" height="18" alt="Saudi Arabia" title="Saudi Arabia"> <img src="https://flagcdn.com/24x18/bd.png" srcset="https://flagcdn.com/48x36/bd.png 2x" width="24" height="18" alt="Bangladesh" title="Bangladesh"> <img src="https://flagcdn.com/24x18/ru.png" srcset="https://flagcdn.com/48x36/ru.png 2x" width="24" height="18" alt="Russia" title="Russia"> <img src="https://flagcdn.com/24x18/pk.png" srcset="https://flagcdn.com/48x36/pk.png 2x" width="24" height="18" alt="Pakistan" title="Pakistan"> <img src="https://flagcdn.com/24x18/id.png" srcset="https://flagcdn.com/48x36/id.png 2x" width="24" height="18" alt="Indonesia" title="Indonesia"> <img src="https://flagcdn.com/24x18/de.png" srcset="https://flagcdn.com/48x36/de.png 2x" width="24" height="18" alt="Germany" title="Germany"> <img src="https://flagcdn.com/24x18/jp.png" srcset="https://flagcdn.com/48x36/jp.png 2x" width="24" height="18" alt="Japan" title="Japan"> <img src="https://flagcdn.com/24x18/ke.png" srcset="https://flagcdn.com/48x36/ke.png 2x" width="24" height="18" alt="Kenya" title="Kenya"> <img src="https://flagcdn.com/24x18/tr.png" srcset="https://flagcdn.com/48x36/tr.png 2x" width="24" height="18" alt="Türkiye" title="Türkiye"> <img src="https://flagcdn.com/24x18/vn.png" srcset="https://flagcdn.com/48x36/vn.png 2x" width="24" height="18" alt="Vietnam" title="Vietnam"> <img src="https://flagcdn.com/24x18/kr.png" srcset="https://flagcdn.com/48x36/kr.png 2x" width="24" height="18" alt="South Korea" title="South Korea"> <img src="https://flagcdn.com/24x18/ir.png" srcset="https://flagcdn.com/48x36/ir.png 2x" width="24" height="18" alt="Iran" title="Iran"> <img src="https://flagcdn.com/24x18/th.png" srcset="https://flagcdn.com/48x36/th.png 2x" width="24" height="18" alt="Thailand" title="Thailand"> <img src="https://flagcdn.com/24x18/pl.png" srcset="https://flagcdn.com/48x36/pl.png 2x" width="24" height="18" alt="Poland" title="Poland"> <img src="https://flagcdn.com/24x18/ua.png" srcset="https://flagcdn.com/48x36/ua.png 2x" width="24" height="18" alt="Ukraine" title="Ukraine"> <img src="https://flagcdn.com/24x18/mm.png" srcset="https://flagcdn.com/48x36/mm.png 2x" width="24" height="18" alt="Myanmar" title="Myanmar"> <img src="https://flagcdn.com/24x18/ro.png" srcset="https://flagcdn.com/48x36/ro.png 2x" width="24" height="18" alt="Romania" title="Romania"> <img src="https://flagcdn.com/24x18/nl.png" srcset="https://flagcdn.com/48x36/nl.png 2x" width="24" height="18" alt="Netherlands" title="Netherlands"> <img src="https://flagcdn.com/24x18/my.png" srcset="https://flagcdn.com/48x36/my.png 2x" width="24" height="18" alt="Malaysia" title="Malaysia"> <img src="https://flagcdn.com/24x18/ph.png" srcset="https://flagcdn.com/48x36/ph.png 2x" width="24" height="18" alt="Philippines" title="Philippines"> <img src="https://flagcdn.com/24x18/ng.png" srcset="https://flagcdn.com/48x36/ng.png 2x" width="24" height="18" alt="Nigeria" title="Nigeria"> <img src="https://flagcdn.com/24x18/et.png" srcset="https://flagcdn.com/48x36/et.png 2x" width="24" height="18" alt="Ethiopia" title="Ethiopia"> <img src="https://flagcdn.com/24x18/uz.png" srcset="https://flagcdn.com/48x36/uz.png 2x" width="24" height="18" alt="Uzbekistan" title="Uzbekistan"> <img src="https://flagcdn.com/24x18/az.png" srcset="https://flagcdn.com/48x36/az.png 2x" width="24" height="18" alt="Azerbaijan" title="Azerbaijan"> <img src="https://flagcdn.com/24x18/lk.png" srcset="https://flagcdn.com/48x36/lk.png 2x" width="24" height="18" alt="Sri Lanka" title="Sri Lanka"> <img src="https://flagcdn.com/24x18/np.png" srcset="https://flagcdn.com/48x36/np.png 2x" width="24" height="18" alt="Nepal" title="Nepal"> <img src="https://flagcdn.com/24x18/kh.png" srcset="https://flagcdn.com/48x36/kh.png 2x" width="24" height="18" alt="Cambodia" title="Cambodia"> <img src="https://flagcdn.com/24x18/gr.png" srcset="https://flagcdn.com/48x36/gr.png 2x" width="24" height="18" alt="Greece" title="Greece"> <img src="https://flagcdn.com/24x18/cz.png" srcset="https://flagcdn.com/48x36/cz.png 2x" width="24" height="18" alt="Czechia" title="Czechia"> <img src="https://flagcdn.com/24x18/hu.png" srcset="https://flagcdn.com/48x36/hu.png 2x" width="24" height="18" alt="Hungary" title="Hungary"> <img src="https://flagcdn.com/24x18/se.png" srcset="https://flagcdn.com/48x36/se.png 2x" width="24" height="18" alt="Sweden" title="Sweden"> <img src="https://flagcdn.com/24x18/il.png" srcset="https://flagcdn.com/48x36/il.png 2x" width="24" height="18" alt="Israel" title="Israel"> <img src="https://flagcdn.com/24x18/dk.png" srcset="https://flagcdn.com/48x36/dk.png 2x" width="24" height="18" alt="Denmark" title="Denmark"> <img src="https://flagcdn.com/24x18/fi.png" srcset="https://flagcdn.com/48x36/fi.png 2x" width="24" height="18" alt="Finland" title="Finland"> <img src="https://flagcdn.com/24x18/no.png" srcset="https://flagcdn.com/48x36/no.png 2x" width="24" height="18" alt="Norway" title="Norway"> <img src="https://flagcdn.com/24x18/sk.png" srcset="https://flagcdn.com/48x36/sk.png 2x" width="24" height="18" alt="Slovakia" title="Slovakia"> <img src="https://flagcdn.com/24x18/bg.png" srcset="https://flagcdn.com/48x36/bg.png 2x" width="24" height="18" alt="Bulgaria" title="Bulgaria"> <img src="https://flagcdn.com/24x18/hr.png" srcset="https://flagcdn.com/48x36/hr.png 2x" width="24" height="18" alt="Croatia" title="Croatia"> <img src="https://flagcdn.com/24x18/rs.png" srcset="https://flagcdn.com/48x36/rs.png 2x" width="24" height="18" alt="Serbia" title="Serbia"> <img src="https://flagcdn.com/24x18/lt.png" srcset="https://flagcdn.com/48x36/lt.png 2x" width="24" height="18" alt="Lithuania" title="Lithuania"> <img src="https://flagcdn.com/24x18/tw.png" srcset="https://flagcdn.com/48x36/tw.png 2x" width="24" height="18" alt="Taiwan" title="Taiwan"> <img src="https://flagcdn.com/24x18/pt.png" srcset="https://flagcdn.com/48x36/pt.png 2x" width="24" height="18" alt="Portugal" title="Portugal"> <img src="https://flagcdn.com/24x18/ge.png" srcset="https://flagcdn.com/48x36/ge.png 2x" width="24" height="18" alt="Georgia" title="Georgia">
 
-The full list of locales lives in
+A lista completa de idiomas está em
 [`client/src/i18n/locale-config.ts`](./client/src/i18n/locale-config.ts).
 
-The original six locales are human-reviewed; the newer ones are machine-
-translated and improve as native speakers send corrections — a one-string PR is
-a great first contribution.
+Os seis idiomas originais foram revisados por humanos; os mais novos foram traduzidos
+automaticamente e melhoram conforme falantes nativos enviam correções — um PR de uma única
+string é uma ótima primeira contribuição.
 
-Translations live in [`client/src/i18n/locales/`](./client/src/i18n/locales) as
-flat JSON files. To fix a string, edit the value in the locale's JSON file. To
-add a language, copy `en.json`, translate the values, and register the locale in
-`client/src/i18n/locale-config.ts` (and `desktop/src/i18n.ts` for the tray
-strings); `npm test` checks every locale for key/placeholder parity — PRs
-welcome.
+As traduções ficam em [`client/src/i18n/locales/`](./client/src/i18n/locales) como
+arquivos JSON simples. Para corrigir uma string, edite o valor no arquivo JSON do idioma. Para
+adicionar um idioma, copie `en.json`, traduza os valores e registre o idioma em
+`client/src/i18n/locale-config.ts` (e em `desktop/src/i18n.ts` para as strings da
+bandeja); `npm test` verifica a paridade de chaves/placeholders em todos os idiomas — PRs
+são bem-vindos.
 
-## Premium (live catalog)
+## Premium (catálogo ao vivo)
 
-The router keeps its model catalog fresh on its own: it pulls a signed catalog
-from [freellmapi.co](https://freellmapi.co) twice a day and applies new models,
-quota changes, and provider quirk fixes to your local DB. Your own
-enable/disable choices and custom providers are never touched, and every
-download is verified against a pinned Ed25519 key before it is applied.
+O roteador mantém seu catálogo de modelos atualizado por conta própria: ele baixa um catálogo
+assinado de [freellmapi.co](https://freellmapi.co) duas vezes por dia e aplica novos modelos,
+mudanças de cota e correções de peculiaridades dos provedores ao seu banco de dados local. Suas próprias
+escolhas de habilitar/desabilitar e seus provedores personalizados nunca são alterados, e cada
+download é verificado com uma chave Ed25519 fixada antes de ser aplicado.
 
-The catalog currently tracks **34 providers**, **474 model families**, **635
-free provider/model endpoints** (584 chat, 41 embeddings, 7 transcription, 3
-video), and roughly **7.4 billion tokens per month** of listed free-tier
-capacity. Browse the full set at
+O catálogo acompanha atualmente **34 provedores**, **474 famílias de modelos**, **635
+endpoints provedor/modelo gratuitos** (584 de chat, 41 de embeddings, 7 de transcrição, 3 de
+vídeo) e cerca de **7,4 bilhões de tokens por mês** de capacidade gratuita listada. Explore o conjunto completo em
 **[freellmapi.co/models](https://freellmapi.co/models.html)**.
 
-Free installs pull the same signed catalog, but from the monthly snapshot: a
-model joins it 30 days after it lands in the live feed, so the free build
-currently sits about 303 models behind. Nothing expires and nothing is
-crippled — it just arrives later.
+As instalações gratuitas baixam o mesmo catálogo assinado, mas do snapshot mensal: um
+modelo entra nele 30 dias depois de chegar ao feed ao vivo, então a versão gratuita
+está atualmente cerca de 303 modelos atrás. Nada expira e nada é limitado — apenas
+chega mais tarde.
 
-Premium keeps that signed catalog live on every router you run. When a provider
-launches a strong free model, quietly tightens a quota, or breaks a wire format,
-live-feed routers receive the update the same day we ship it.
+O Premium mantém esse catálogo assinado ao vivo em cada roteador que você executa. Quando um provedor
+lança um bom modelo gratuito, aperta discretamente uma cota ou quebra um formato de comunicação,
+os roteadores no feed ao vivo recebem a atualização no mesmo dia em que a publicamos.
 
-**[Go live at freellmapi.co →](https://freellmapi.co/?utm_source=github&utm_medium=readme&utm_campaign=premium&utm_content=readme_bottom#pricing)**
+**[Entre no ar em freellmapi.co →](https://freellmapi.co/?utm_source=github&utm_medium=readme&utm_campaign=premium&utm_content=readme_bottom#pricing)**
 
-- $19/year or $49 once, lifetime. Stripe checkout; cancel anytime, self-serve.
-- One `fla_` key covers every router you run: desktop, homelab, Raspberry Pi.
-- Activate in the dashboard under **Premium**; cancel or manage billing
-  self-serve at [freellmapi.co/manage](https://freellmapi.co/manage).
-- The router itself stays MIT-licensed and fully free, forever. Premium is only
-  the live feed, and it's what funds the daily model testing and catalog
-  maintenance that keeps the catalog working.
+- US$ 19/ano ou US$ 49 uma única vez, vitalício. Checkout via Stripe; cancele quando quiser, por conta própria.
+- Uma chave `fla_` cobre todos os roteadores que você executa: desktop, homelab, Raspberry Pi.
+- Ative no painel em **Premium**; cancele ou gerencie a cobrança por conta própria
+  em [freellmapi.co/manage](https://freellmapi.co/manage).
+- O roteador em si continua licenciado sob MIT e totalmente gratuito, para sempre. O Premium é apenas
+  o feed ao vivo, e é ele que financia os testes diários de modelos e a manutenção do catálogo
+  que mantêm o catálogo funcionando.
 
-The catalog server never sees your prompts, completions, or provider keys — the
-router stays fully self-hosted either way.
+O servidor do catálogo nunca vê seus prompts, respostas ou chaves de provedores — o roteador
+continua totalmente hospedado por você em qualquer dos casos.
 
-## Using the API
+## Usando a API
 
 ```python
 from openai import OpenAI
@@ -273,76 +275,78 @@ client = OpenAI(
 )
 
 resp = client.chat.completions.create(
-    model="auto",  # let the router pick; or "auto:fast", "auto:smart", a profile, or a model id
+    model="auto",  # deixe o roteador escolher; ou "auto:fast", "auto:smart", um perfil, ou um id de modelo
     messages=[{"role": "user", "content": "Summarise the fall of Rome in one sentence."}],
 )
 print(resp.choices[0].message.content)
 print("Routed via:", resp.headers.get("x-routed-via"))
 ```
 
-Streaming, the `auto:*` routing strategies, tool calling, vision input, Gemini Google Search grounding, embeddings, and the Anthropic Messages surface — with curl and Python examples for each — are all in **[docs/en/api/01-rest-api.md](docs/en/api/01-rest-api.md)**. Every response carries an `X-Routed-Via: <platform>/<model>` header so you can see which provider actually served it.
+Streaming, as estratégias de roteamento `auto:*`, chamada de ferramentas, entrada de visão, grounding com Google Search do Gemini, embeddings e a superfície Anthropic Messages — com exemplos em curl e Python para cada uma — estão em **[docs/en/api/01-rest-api.md](docs/en/api/01-rest-api.md)**. Toda resposta traz um cabeçalho `X-Routed-Via: <plataforma>/<modelo>` para que você veja qual provedor realmente a atendeu.
 
-## Screenshots
+## Capturas de tela
 
-### Models
+### Modelos
 
-Pick a routing strategy and watch the monthly token budget fill across the whole provider fleet. Every model shows live reliability, speed, and intelligence scores — the order below is how requests route right now.
+Escolha uma estratégia de roteamento e veja o orçamento mensal de tokens se preencher em toda a frota de provedores. Cada modelo mostra pontuações ao vivo de confiabilidade, velocidade e inteligência — a ordem abaixo é como as requisições são roteadas agora.
 
-![Models page](repo-assets/models.png)
+![Página Modelos](repo-assets/models.png)
 
-### Keys
+### Chaves
 
-Manage provider credentials and grab the unified API key your apps connect with. Each key shows a status dot and when it was last health-checked.
+Gerencie as credenciais dos provedores e pegue a chave de API unificada com a qual seus aplicativos se conectam. Cada chave mostra um indicador de status e quando foi verificada pela última vez.
 
-![Keys page](repo-assets/keys.png)
+![Página Chaves](repo-assets/keys.png)
 
 ### Playground
 
-Send a chat completion through the router and see which provider served it, with the model ID and latency printed right on the message. Attach files by button, drag-and-drop, or paste: images (PNG/JPEG/WebP/GIF) are downscaled in the browser and sent as image content parts to a vision-capable model, and text files (TXT/MD/CSV/JSON/LOG) are inlined into the prompt as fenced blocks.
+Envie uma chat completion pelo roteador e veja qual provedor a atendeu, com o ID do modelo e a latência impressos na própria mensagem. Anexe arquivos por botão, arrastar e soltar ou colar: imagens (PNG/JPEG/WebP/GIF) são reduzidas no navegador e enviadas como partes de conteúdo de imagem a um modelo com capacidade de visão, e arquivos de texto (TXT/MD/CSV/JSON/LOG) são inseridos no prompt como blocos de código.
 
-![Playground page](repo-assets/playground.png)
+![Página Playground](repo-assets/playground.png)
 
-### Analytics
+### Análises
 
-Request volume, success rate, tokens in and out, average latency, and per-provider breakdowns over 24h / 7d / 30d / 90d windows.
+Volume de requisições, taxa de sucesso, tokens de entrada e saída, latência média e detalhamento por provedor em janelas de 24h / 7d / 30d / 90d.
 
-![Analytics page](repo-assets/analytics.png)
+![Página Análises](repo-assets/analytics.png)
 
-## How it works
+## Como funciona
 
-![One request in, the best free model out — the fallback chain with live scores, cooldowns, and quota tracking](repo-assets/router-flow.png)
+![Uma requisição entra, o melhor modelo gratuito sai — a cadeia de fallback com pontuações ao vivo, cooldowns e controle de cotas](repo-assets/router-flow.png)
 
-One request in, the best free model out: the router picks the highest-priority model with a healthy key that's under all its rate limits, decrypts the key in memory, and calls the provider — on a 429/5xx it cools that key down and retries the next model in your chain. The component walkthrough, routing internals, and operational details live in **[docs/en/architecture/00-high-level-index.md](docs/en/architecture/00-high-level-index.md)**.
+Uma requisição entra, o melhor modelo gratuito sai: o roteador escolhe o modelo de maior prioridade com uma chave saudável que esteja abaixo de todos os seus limites, descriptografa a chave em memória e chama o provedor — em caso de 429/5xx, ele coloca essa chave em espera e tenta o próximo modelo da sua cadeia. O passo a passo dos componentes, os internos do roteamento e os detalhes operacionais estão em **[docs/en/architecture/00-high-level-index.md](docs/en/architecture/00-high-level-index.md)**.
 
-## FAQ
+## Perguntas frequentes
 
-**Do I need a password?** Not for the desktop app — the dashboard signs itself in with a hidden local account, so there is nothing to set up and nothing to forget. Open it from the tray icon → **Open Dashboard**, or in any browser on the same computer (for example http://127.0.0.1:31415); both sign in on their own. Another device reaching the app over LAN access still sees the sign-in form. Server installs (Docker, one-liner, `npm run dev`) do have an email + password account.
+**Preciso de uma senha?** Não no aplicativo desktop — o painel faz login sozinho com uma conta local oculta, então não há nada para configurar nem para esquecer. Abra-o pelo ícone da bandeja → **Open Dashboard**, ou em qualquer navegador no mesmo computador (por exemplo http://127.0.0.1:31415); ambos entram automaticamente. Outro dispositivo que acesse o aplicativo pela LAN ainda vê o formulário de login. As instalações em servidor (Docker, comando único, `npm run dev`) têm uma conta com e-mail e senha.
 
-**I forgot the password on a server install.** Click **Forgot password?** on the login page. There is no email to send a link to, so the one-time code is printed to the server log — read it with `docker compose logs -f freellmapi` (or in the terminal running the server, or in the desktop log file), then enter it on the reset form. The code lasts 15 minutes.
+**Esqueci a senha em uma instalação de servidor.** Clique em **Forgot password?** na página de login. Como não há e-mail para enviar um link, o código de uso único é impresso no log do servidor — leia-o com `docker compose logs -f freellmapi` (ou no terminal em que o servidor está rodando, ou no arquivo de log do desktop) e digite-o no formulário de redefinição. O código dura 15 minutos.
 
-**Where are the logs?** In the container log for Docker, in the terminal for a source run, and in `<data dir>/logs/freeapi.log` for the desktop app — reachable from the tray menu's **Open Logs Folder**.
+**Onde ficam os logs?** No log do contêiner no Docker, no terminal em uma execução a partir do código-fonte e em `<diretório de dados>/logs/freeapi.log` no aplicativo desktop — acessível pelo menu da bandeja em **Open Logs Folder**.
 
-**How do I uninstall?** Remove the app (Trash on macOS, *Settings → Apps* on Windows, `docker compose down -v` for Docker), then delete the data directory: `%APPDATA%\FreeLLMAPI\`, `~/Library/Application Support/FreeLLMAPI/`, or `~/.config/FreeLLMAPI/`. Uninstalling never touches that folder on its own.
+**Como desinstalo?** Remova o aplicativo (Lixeira no macOS, *Configurações → Aplicativos* no Windows, `docker compose down -v` no Docker) e depois apague o diretório de dados: `%APPDATA%\FreeLLMAPI\`, `~/Library/Application Support/FreeLLMAPI/` ou `~/.config/FreeLLMAPI/`. A desinstalação nunca mexe nessa pasta por conta própria.
 
-Longer answers, per install method: **[docs/en/install/01-install.md#faq-passwords-logs-uninstall](docs/en/install/01-install.md#faq-passwords-logs-uninstall)**.
+Respostas mais longas, por método de instalação: **[docs/en/install/01-install.md#faq-passwords-logs-uninstall](docs/en/install/01-install.md#faq-passwords-logs-uninstall)**.
 
-## Limitations
+## Limitações
 
-Stacking free tiers has real trade-offs: no frontier models, variable latency, no SLA — and the effective intelligence of the endpoint dips late in the day as top models hit their daily caps, then resets at UTC midnight. Read the honest list in **[docs/en/architecture/00-high-level-index.md#limitations](docs/en/architecture/00-high-level-index.md#limitations)** before building anything real on this.
+Empilhar planos gratuitos tem contrapartidas reais: sem modelos de ponta, latência variável, sem SLA — e a inteligência efetiva do endpoint cai no fim do dia conforme os melhores modelos atingem seus limites diários, voltando ao normal à meia-noite UTC. Leia a lista honesta em **[docs/en/architecture/00-high-level-index.md#limitations](docs/en/architecture/00-high-level-index.md#limitations)** antes de construir qualquer coisa séria em cima disso.
 
-## Contributing
+## Contribuindo
 
-Contributors very welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for the dev loop, PR expectations, and the policy on AI/LLM-assisted contributions (short version: welcome, same quality bar as any other PR). Good first PRs:
+Contribuidores são muito bem-vindos! Veja [CONTRIBUTING.md](CONTRIBUTING.md) para o ciclo de desenvolvimento, as expectativas para PRs e a política sobre contribuições assistidas por IA/LLM (resumindo: são bem-vindas, com o mesmo padrão de qualidade de qualquer outro PR). Bons primeiros PRs:
 
-- **Add a provider** — copy `server/src/providers/openai-compat.ts` as a template, wire it into `server/src/providers/index.ts`, seed its models in `server/src/db/index.ts`, add a test in `server/src/__tests__/providers/`.
-- **Add an endpoint** — other OpenAI-compatible surfaces (e.g. `/v1/realtime`). The provider base class can grow new methods; adapters declare which they support.
-- **Improve the router** — cost-aware routing (cheapest-healthy-fastest tradeoffs), better latency-weighted priority, regional pinning.
-- **Dashboard polish** — charts on the Analytics page, key rotation UX, batch import of keys from `.env`.
-- **Docs** — more examples, client library snippets for Go/Rust/etc., a deployment recipe for Docker or Fly.
+- **Adicionar um provedor** — copie `server/src/providers/openai-compat.ts` como modelo, ligue-o em `server/src/providers/index.ts`, popule seus modelos em `server/src/db/index.ts` e adicione um teste em `server/src/__tests__/providers/`.
+- **Adicionar um endpoint** — outras superfícies compatíveis com a OpenAI (por exemplo `/v1/realtime`). A classe base de provedor pode ganhar novos métodos; os adaptadores declaram quais suportam.
+- **Melhorar o roteador** — roteamento sensível a custo (compromissos entre mais barato, saudável e rápido), melhor prioridade ponderada por latência, fixação regional.
+- **Polimento do painel** — gráficos na página Análises, UX de rotação de chaves, importação em lote de chaves a partir de `.env`.
+- **Documentação** — mais exemplos, trechos para bibliotecas cliente em Go/Rust/etc., uma receita de deploy para Docker ou Fly.
 
-`npm install && npm run dev` gets you the server on :3001 and the dashboard on :5173, both with HMR. For a repeatable setup, use `./scripts/dev-bootstrap.sh` on Bash or `.\scripts\dev-bootstrap.ps1` on PowerShell; each preserves an existing `.env`. PRs should include a test, keep the existing suite green (`npm test`), and match the `.editorconfig` / tsconfig defaults already in the repo. Database migration workflow and the full contributor loop are in [CONTRIBUTING.md](./CONTRIBUTING.md).
+`npm install && npm run dev` coloca o servidor em :3001 e o painel em :5173, ambos com HMR. Para uma configuração repetível, use `./scripts/dev-bootstrap.sh` no Bash ou `.\scripts\dev-bootstrap.ps1` no PowerShell; cada um preserva um `.env` existente. Os PRs devem incluir um teste, manter a suíte existente verde (`npm test`) e seguir os padrões de `.editorconfig` / tsconfig já presentes no repositório. O fluxo de migração de banco de dados e o ciclo completo do colaborador estão em [CONTRIBUTING.md](./CONTRIBUTING.md).
 
-### Contributors
+### Colaboradores
+
+Agradecimentos a todas as pessoas que construíram o FreeLLMAPI. Veja também o [gráfico oficial de colaboradores](https://github.com/tashfeenahmed/freellmapi/graphs/contributors).
 
 <a href="https://github.com/moaaz12-web"><img src="https://images.weserv.nl/?url=github.com/moaaz12-web.png&w=40&h=40&fit=cover&mask=circle" width="40" alt="@moaaz12-web" /></a>
 <a href="https://github.com/lukasulc"><img src="https://images.weserv.nl/?url=github.com/lukasulc.png&w=40&h=40&fit=cover&mask=circle" width="40" alt="@lukasulc" /></a>
@@ -496,12 +500,20 @@ Contributors very welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for the dev lo
 <a href="https://github.com/HyperionBurn"><img src="https://images.weserv.nl/?url=github.com/HyperionBurn.png&w=40&h=40&fit=cover&mask=circle" width="40" alt="@HyperionBurn" /></a>
 <a href="https://github.com/emirhantasli"><img src="https://images.weserv.nl/?url=github.com/emirhantasli.png&w=40&h=40&fit=cover&mask=circle" width="40" alt="@emirhantasli" /></a>
 
-## Disclaimer
+## Aviso legal
 
-**This project is for personal experimentation and learning, not production.** Free tiers exist so developers can prototype against them; they aren't a stable, supported inference substrate and shouldn't be treated as one. If you build something real on top of FreeLLMAPI, swap in a paid API before you ship. Your relationship with each upstream provider is governed by the terms you accepted when you created your account — those terms still apply when the traffic is proxied through this project, and you're responsible for complying with them.
+**Este projeto é para experimentação e aprendizado pessoal, não para produção.** Os planos gratuitos existem para que desenvolvedores façam protótipos com eles; não são uma base de inferência estável e com suporte, e não devem ser tratados como tal. Se você construir algo real em cima do FreeLLMAPI, troque por uma API paga antes de lançar. Sua relação com cada provedor é regida pelos termos que você aceitou ao criar sua conta — esses termos continuam valendo quando o tráfego passa por este projeto, e você é responsável por cumpri-los.
 
-How each provider's ToS views a personal, single-user proxy — reviewed provider by provider in May 2026 — is in [docs/en/architecture/00-high-level-index.md#terms-of-service-review](docs/en/architecture/00-high-level-index.md#terms-of-service-review).
+Como o termo de serviço de cada provedor encara um proxy pessoal de usuário único — analisado provedor por provedor em maio de 2026 — está em [docs/en/architecture/00-high-level-index.md#terms-of-service-review](docs/en/architecture/00-high-level-index.md#terms-of-service-review).
 
-## License
+## Licença
 
 [MIT](./LICENSE)
+
+---
+
+<div align="center">
+
+**Créditos:** projeto original [FreeLLMAPI](https://github.com/tashfeenahmed/freellmapi) de [Tashfeen Ahmed](https://github.com/tashfeenahmed) e colaboradores, licenciado sob MIT. Tradução para o português (Brasil) não oficial, feita a partir do README original em inglês.
+
+</div>
